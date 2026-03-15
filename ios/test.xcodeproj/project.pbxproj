@@ -11,6 +11,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		5A57CDFE2564411297544B5D /* Sansation-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AE9ECE6FA9B4D08ACBF57B6 /* Sansation-Bold.ttf */; };
+		A8D97CDA17FD4500B42A00FC /* Sansation-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EEEB39244D1B4B34AE4538BC /* Sansation-BoldItalic.ttf */; };
+		76BE27EC0580422EA14AC8E5 /* Sansation-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E0D856C65C2489B9834E793 /* Sansation-Italic.ttf */; };
+		A27BD728147949EC8D04C655 /* Sansation-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EFB7B8D3F60428180A28E42 /* Sansation-Light.ttf */; };
+		887CAFAF36C04549848B211A /* Sansation-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DD25441160D42A2BE0551CF /* Sansation-LightItalic.ttf */; };
+		3C59F0F9AAB24D2BA45FE430 /* Sansation-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 069F43F95C964576BE317B06 /* Sansation-Regular.ttf */; };
+		F9C1A870BD0441FA9B2FC323 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2C2C3735EC7248258116AA0C /* OFL.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = test/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = test/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		8AE9ECE6FA9B4D08ACBF57B6 /* Sansation-Bold.ttf */ = {isa = PBXFileReference; name = "Sansation-Bold.ttf"; path = "../src/assets/fonts/Sansation-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EEEB39244D1B4B34AE4538BC /* Sansation-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Sansation-BoldItalic.ttf"; path = "../src/assets/fonts/Sansation-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4E0D856C65C2489B9834E793 /* Sansation-Italic.ttf */ = {isa = PBXFileReference; name = "Sansation-Italic.ttf"; path = "../src/assets/fonts/Sansation-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5EFB7B8D3F60428180A28E42 /* Sansation-Light.ttf */ = {isa = PBXFileReference; name = "Sansation-Light.ttf"; path = "../src/assets/fonts/Sansation-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3DD25441160D42A2BE0551CF /* Sansation-LightItalic.ttf */ = {isa = PBXFileReference; name = "Sansation-LightItalic.ttf"; path = "../src/assets/fonts/Sansation-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		069F43F95C964576BE317B06 /* Sansation-Regular.ttf */ = {isa = PBXFileReference; name = "Sansation-Regular.ttf"; path = "../src/assets/fonts/Sansation-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2C2C3735EC7248258116AA0C /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../src/assets/fonts/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +88,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				DD645722BB8247F4A38167E2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -96,6 +111,21 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		DD645722BB8247F4A38167E2 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				8AE9ECE6FA9B4D08ACBF57B6 /* Sansation-Bold.ttf */,
+				EEEB39244D1B4B34AE4538BC /* Sansation-BoldItalic.ttf */,
+				4E0D856C65C2489B9834E793 /* Sansation-Italic.ttf */,
+				5EFB7B8D3F60428180A28E42 /* Sansation-Light.ttf */,
+				3DD25441160D42A2BE0551CF /* Sansation-LightItalic.ttf */,
+				069F43F95C964576BE317B06 /* Sansation-Regular.ttf */,
+				2C2C3735EC7248258116AA0C /* OFL.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -159,6 +189,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5A57CDFE2564411297544B5D /* Sansation-Bold.ttf in Resources */,
+				A8D97CDA17FD4500B42A00FC /* Sansation-BoldItalic.ttf in Resources */,
+				76BE27EC0580422EA14AC8E5 /* Sansation-Italic.ttf in Resources */,
+				A27BD728147949EC8D04C655 /* Sansation-Light.ttf in Resources */,
+				887CAFAF36C04549848B211A /* Sansation-LightItalic.ttf in Resources */,
+				3C59F0F9AAB24D2BA45FE430 /* Sansation-Regular.ttf in Resources */,
+				F9C1A870BD0441FA9B2FC323 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
