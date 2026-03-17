@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItem,
+  DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 import {
   View,
@@ -14,15 +15,15 @@ import {
 } from 'react-native';
 
 import Dashboard from '../../dashboard/navigation/Dashboard';
-import OCRInbox from '../../../screens/OCRInbox';
-import PurchaseRequisition from '../../../screens/PurchaseRequisition';
-import RFQ from '../../../screens/RFQ';
+import OCRInbox from '../../OCR_Inbox/Screens/OCRInbox';
+import PurchaseRequisitionTabs from '../../purchase_requisition/navigation/PurchaseRequisitionTabs';
+import RFQ from '../../request_for_quotation/screens/RFQ';
 import Quotation from '../../../screens/Quotation';
 import PurchaseOrder from '../../../screens/PurchaseOrder';
 import GRNSRN from '../../../screens/GRNSRN';
-import Provision from '../../../screens/Provision';
+import Provision from '../../provision/navigation/Provision';
 import VendorAdvance from '../../vendor_advance/navigation/VendorAdvance';
-import Reimbursement from '../../../screens/Reimbursement';
+import ReimbursementTabs from '../../reimbursement/navigation/ReimbursementTabs';
 import Payments from '../../../screens/Payments';
 import CreditNote from '../../../screens/CreditNote';
 import Inventory from '../../../screens/Inventory';
@@ -32,21 +33,21 @@ import Settings from '../../../screens/Settings';
 
 import Icon from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import UserContext from '../../../context/UserContext';
 import ProfileMenu from '../../../common_components/ProfileMenu';
 import InvoiceStack from '../../invoices/navigation/InvoiceStack';
 import { useTheme } from 'react-native-paper';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { useUserContext } from '../../../context/UserContext';
+import { StackActions, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
 const drawerIcon =
-  name =>
-  ({ color }) =>
+  (name: string) =>
+  ({ color }: { color: string }) =>
     <Icon name={name} size={20} color={color} style={{ marginRight: 14 }} />;
 
-function CustomDrawerContent(props) {
-  const { user, setUser, setDelegateFromUser } = useContext(UserContext);
+function CustomDrawerContent(props: DrawerContentComponentProps) {
+  const { user, setUser, setDelegateFromUser } = useUserContext();
   const [openInvoices, setOpenInvoices] = useState(false);
   const { colors } = useTheme();
 
@@ -172,7 +173,7 @@ function CustomDrawerContent(props) {
                   ]);
                   setUser(null);
                   setDelegateFromUser(null);
-                  props.navigation.replace('Login');
+                  props.navigation.dispatch(StackActions.replace('Login'));
                 },
               },
             ]);
@@ -183,12 +184,15 @@ function CustomDrawerContent(props) {
   );
 }
 
-export default function HomeDrawer({ navigation }) {
+export default function HomeDrawer() {
   const { colors } = useTheme();
 
   return (
     <Drawer.Navigator
-      drawerContent={props => <CustomDrawerContent {...props} />}
+      id="home-drawer"
+      drawerContent={(props: DrawerContentComponentProps) => (
+        <CustomDrawerContent {...props} />
+      )}
       screenOptions={({ route }) => ({
         headerRight: () => <ProfileMenu />,
         headerStyle: { backgroundColor: colors.primary },
@@ -218,9 +222,9 @@ export default function HomeDrawer({ navigation }) {
       />
       <Drawer.Screen
         name="Purchase Requisition"
-        component={PurchaseRequisition}
+        component={PurchaseRequisitionTabs}
         options={{
-          title: 'OCR Inbox',
+          title: 'Purchase Requisition',
           drawerIcon: drawerIcon('file-text'),
         }}
       />
@@ -290,7 +294,7 @@ export default function HomeDrawer({ navigation }) {
       />
       <Drawer.Screen
         name="Reimbursement"
-        component={Reimbursement}
+        component={ReimbursementTabs}
         options={{
           title: 'OCR Inbox',
           drawerIcon: drawerIcon('refresh-cw'),

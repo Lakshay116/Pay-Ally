@@ -278,6 +278,7 @@ import { Avatar, Menu, Divider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 import { useUserContext } from '../context/UserContext';
 import { ThemeContext } from '../context/ThemeContext';
@@ -292,13 +293,9 @@ import { RootStackParamList } from '../types/navigation.types';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
-type Props = {
-  navigation: NavigationProp,
-};
-
 /* ------------------ Component ------------------ */
 
-export default function ProfileMenu({ navigation }: Props) {
+export default function ProfileMenu() {
   const [visible, setVisible] = useState <boolean>(false);
 
   const { user, setUser, setDelegateFromUser } = useUserContext();
@@ -306,6 +303,7 @@ export default function ProfileMenu({ navigation }: Props) {
   const { isDark, toggleTheme } = useContext(ThemeContext);
 
   const colors = isDark ? DarkColors : LightColors;
+  const navigation = useNavigation<NavigationProp>();
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -328,17 +326,17 @@ export default function ProfileMenu({ navigation }: Props) {
       {
         text: 'Logout',
         style: 'destructive',
-        onPress: async () => {
-          await AsyncStorage.multiRemove([
-            'PAYALLY_USER',
-            'PAYALLY_DELEGATE_USER',
-          ]);
+          onPress: async () => {
+            await AsyncStorage.multiRemove([
+              'PAYALLY_USER',
+              'PAYALLY_DELEGATE_USER',
+            ]);
 
-          setUser(null);
-          setDelegateFromUser(null);
+            setUser(null);
+            setDelegateFromUser(null);
 
-          navigation.replace('Login');
-        },
+            navigation.replace('Login');
+          },
       },
     ]);
 

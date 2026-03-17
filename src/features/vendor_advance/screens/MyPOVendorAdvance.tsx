@@ -16,8 +16,8 @@ import { MultiSelect } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DatePicker from 'react-native-date-picker';
 import {
-  fetchAllPOVendorAdvances,
-  fetchPOVendorAdvanceReferenceNumbers,
+  fetchMyPOVendorAdvances,
+  fetchMyPOVendorAdvanceReferenceNumbers,
   fetchPurchaseOrders,
   fetchEntities,
   fetchOffices,
@@ -75,7 +75,7 @@ const getStatusColors = (status, colors) => {
 const getTotalAdvance = items =>
   items?.reduce((sum, it) => sum + Number(it?.AdvancePayableAmount || 0), 0) || 0;
 
-export default function AllPOVendorAdvance({ navigation }) {
+export default function MyPOVendorAdvance({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -129,7 +129,7 @@ export default function AllPOVendorAdvance({ navigation }) {
           setLoading(true);
         }
 
-        const rows = await fetchAllPOVendorAdvances(
+        const rows = await fetchMyPOVendorAdvances(
           appliedFilters,
           PAGE_SIZE,
           (pageNumber - 1) * PAGE_SIZE,
@@ -146,7 +146,7 @@ export default function AllPOVendorAdvance({ navigation }) {
         setPage(pageNumber);
         setHasMore(rows.length === PAGE_SIZE);
       } catch (err) {
-        console.log('Fetch All PO Vendor Advance Error:', err?.response || err);
+        console.log('Fetch My PO Vendor Advance Error:', err?.response || err);
 
         if (!isLoadMore) {
           setAdvances([]);
@@ -170,7 +170,7 @@ export default function AllPOVendorAdvance({ navigation }) {
     try {
       const [referenceData, purchaseOrderData, entityData, officeData, departmentData, vendorData, userData] =
         await Promise.all([
-          fetchPOVendorAdvanceReferenceNumbers(),
+          fetchMyPOVendorAdvanceReferenceNumbers(),
           fetchPurchaseOrders(),
           fetchEntities(),
           fetchOffices(),
@@ -187,7 +187,7 @@ export default function AllPOVendorAdvance({ navigation }) {
       setVendors(vendorData);
       setUsers(userData);
     } catch (err) {
-      console.log('Initial all PO vendor advance filter load error:', err);
+      console.log('Initial my PO vendor advance filter load error:', err);
     }
   }, []);
 
@@ -195,7 +195,7 @@ export default function AllPOVendorAdvance({ navigation }) {
     loadInitialFilterOptions();
   }, [loadInitialFilterOptions]);
 
-  const searchAdvanceReferences = async text => setAdvanceReferences(await fetchPOVendorAdvanceReferenceNumbers(text));
+  const searchAdvanceReferences = async text => setAdvanceReferences(await fetchMyPOVendorAdvanceReferenceNumbers(text));
   const searchPurchaseOrders = async text => setPurchaseOrders(await fetchPurchaseOrders(text));
   const searchEntity = async text => setEntities(await fetchEntities(text));
   const searchOffice = async text => setOffices(await fetchOffices(text));
@@ -273,7 +273,7 @@ export default function AllPOVendorAdvance({ navigation }) {
     return (
       <TouchableOpacity
         style={[styles.card, { backgroundColor: colors.surface, borderColor: colors.border }]}
-        onPress={() => navigation.navigate('VendorAdvanceDetails', { advance: item })}
+        onPress={() => navigation.navigate('POVendorAdvanceDetails', { advance: item })}
       >
         <View style={styles.headerRow}>
           <Text style={[styles.invoiceNo, { color: colors.primary }]}>{item?.AdvanceReferenceNumber || '-'}</Text>
@@ -307,7 +307,7 @@ export default function AllPOVendorAdvance({ navigation }) {
     return (
       <TouchableOpacity
         style={[styles.gridCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
-        onPress={() => navigation.navigate('VendorAdvanceDetails', { advance: item })}
+        onPress={() => navigation.navigate('POVendorAdvanceDetails', { advance: item })}
       >
         <View style={styles.gridHeader}>
           <View style={styles.gridHeaderSpacer} />
@@ -368,7 +368,9 @@ export default function AllPOVendorAdvance({ navigation }) {
                   <Text style={styles.label}>Requested Date</Text>
                   <TouchableOpacity style={styles.dateRangeInput} onPress={() => setOpenStartPicker(true)}>
                     <Text style={[styles.dateText, !startDate && !endDate ? styles.datePlaceholder : null]}>
-                      {startDate ? formatDateValue(startDate) : 'Start date'}   ->   {endDate ? formatDateValue(endDate) : 'End date'}
+                    {startDate ? formatDateValue(startDate) : 'Start date'}
+                    {'   \u2192   '}
+                    {endDate ? formatDateValue(endDate) : 'End date'}
                     </Text>
                     <Icon name="calendar-month-outline" size={18} color={colors.text + '88'} />
                   </TouchableOpacity>
